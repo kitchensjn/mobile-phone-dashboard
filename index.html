@@ -15,10 +15,27 @@
 				console.log('Latitude: ' + position.coords.latitude);
 				console.log('Longitude: ' + position.coords.longitude);
 			}
+			
+			window.addEventListener("deviceorientation", handleOrientation, true);
+			
+			function handleOrientation(event) {
+			  	var absolute = event.absolute;
+			  	var alpha    = event.alpha;
+			  	var beta     = event.beta;
+			  	var gamma    = event.gamma;
+				document.getElementById("alpha").innerHTML = alpha;
+				document.getElementById("beta").innerHTML = beta;
+				document.getElementById("gamma").innerHTML = gamma;
+
+			  	// Do stuff with the new orientation data
+			}
 		</script>
 	</head>
 	
 	<body>
+		<h2 id="alpha">0</h2>
+		<h2 id="beta">0</h2>
+		<h2 id="gamma">0</h2>
 	</body>
 
 </html>
