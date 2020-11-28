@@ -31,7 +31,12 @@
 			
 			function enableLocation () {
 				if (navigator.geolocation) {
-					navigator.geolocation.watchPosition(success);
+					var options = {
+						enableHighAccuracy: true,
+						timeout: 5000,
+						maximumAge: 0
+					};
+					navigator.geolocation.watchPosition(success, options);
 				}
 
 				function success(position) {
@@ -39,7 +44,11 @@
 					document.getElementById("lat").innerHTML = "Lat: " + position.coords.latitude;
 					document.getElementById("lon").innerHTML = "Lon: " + position.coords.longitude;
 					document.getElementById("accuracy").innerHTML = "Accuracy: " + position.coords.accuracy.toFixed(0);
-				}	
+				}
+				
+				function error(err) {
+					console.log("Geolocation Unavailable!");
+				}
 			}
 			
 			
