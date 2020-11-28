@@ -17,7 +17,12 @@
 		<h2 id="gamma">0</h2>
 		
 		<script>
-			navigator.geolocation.getCurrentPosition(success);
+			
+			if (navigator.geolocation) {
+				console.log("Success");
+			}
+			
+			//navigator.geolocation.getCurrentPosition(success);
 			
 			//if (navigator.geolocation) {
 			//	navigator.geolocation.watchPosition(success);
