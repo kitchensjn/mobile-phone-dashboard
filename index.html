@@ -9,6 +9,7 @@
 	</head>
 	
 	<body>
+		<input type="button" value="Enable Orientation Access" onclick=enableOrientation()></button>
 		<h2 id="connection">!!!!!</h2>
 		<h2 id="absolute">0</h2>
 		<h2 id="alpha">0</h2>
@@ -25,25 +26,26 @@
 			//	console.log('Longitude: ' + position.coords.longitude);
 			//}
 			
-			
-			DeviceOrientationEvent.requestPermission().then(response => {
-				if (response == "granted") {
-					window.addEventListener("deviceorientation", (e) => {
-						var absolute = event.absolute;
-						var alpha    = event.alpha;
-						var beta     = event.beta;
-						var gamma    = event.gamma;
-						console.log("Absolute:" + absolute);
-						console.log("Alpha:" + alpha);
-						console.log("Beta:" + beta);
-						console.log("Gamma:" + gamma);
-						document.getElementById("absolute").innerHTML = absolute;
-						document.getElementById("alpha").innerHTML = alpha;
-						document.getElementById("beta").innerHTML = beta;
-						document.getElementById("gamma").innerHTML = gamma;
-					})
-				}
-			})
+			function enableOrientation () {
+				DeviceOrientationEvent.requestPermission().then(response => {
+					if (response == "granted") {
+						window.addEventListener("deviceorientation", (e) => {
+							var absolute = event.absolute;
+							var alpha    = event.alpha;
+							var beta     = event.beta;
+							var gamma    = event.gamma;
+							console.log("Absolute:" + absolute);
+							console.log("Alpha:" + alpha);
+							console.log("Beta:" + beta);
+							console.log("Gamma:" + gamma);
+							document.getElementById("absolute").innerHTML = absolute;
+							document.getElementById("alpha").innerHTML = alpha;
+							document.getElementById("beta").innerHTML = beta;
+							document.getElementById("gamma").innerHTML = gamma;
+						})
+					}
+				})
+			}
 			
 			/*
 			if(window.DeviceOrientationEvent) {
