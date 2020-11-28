@@ -55,9 +55,9 @@
 				DeviceMotionEvent.requestPermission().then(response => {
 					if (response == "granted") {
 						window.addEventListener("devicemotion", (event) => {
-							document.getElementById("accelX").innerHTML = "AccelX: " + Math.round(event.acceleration.x, 2);
-							document.getElementById("accelY").innerHTML = "AccelY: " + Math.round(event.acceleration.y, 2);
-							document.getElementById("accelZ").innerHTML = "AccelZ: " + Math.round(event.acceleration.z, 2);
+							document.getElementById("accelX").innerHTML = "AccelX: " + event.acceleration.x.toFixed(2);
+							document.getElementById("accelY").innerHTML = "AccelY: " + event.acceleration.y.toFixed(2);
+							document.getElementById("accelZ").innerHTML = "AccelZ: " + event.acceleration.z.toFixed(2);
 						})
 					}
 				})
