@@ -9,7 +9,7 @@
 	</head>
 	
 	<body>
-		<input type="button" value="Enable Orientation Access" onclick=enableOrientation()></input>
+		<input type="button" value="Enable Orientation Access" onclick=enableLocation()></input>
 		<h2 id="lat">0</h2>
 		<h2 id="lon">0</h2>
 		<h2 id="alpha">0</h2>
@@ -18,22 +18,18 @@
 		
 		<script>
 			
-			if (navigator.geolocation) {
-				//console.log("Success");
-				navigator.geolocation.getCurrentPosition(success);
-			}
-			
-			//navigator.geolocation.getCurrentPosition(success);
-			
-			//if (navigator.geolocation) {
-			//	navigator.geolocation.watchPosition(success);
-			//}
+			function enableLocation () {
+				if (navigator.geolocation) {
+					console.log("Success");
+					navigator.geolocation.getCurrentPosition(success);
+				}
 
-			function success(position) {
-				console.log('Latitude: ' + position.coords.latitude);
-				console.log('Longitude: ' + position.coords.longitude);
-				//document.getElementById("lat").innerHTML = position.coords.latitude;
-				//document.getElementById("lon").innerHTML = position.coords.longitude;
+				function success(position) {
+					console.log('Latitude: ' + position.coords.latitude);
+					console.log('Longitude: ' + position.coords.longitude);
+					document.getElementById("lat").innerHTML = position.coords.latitude;
+					document.getElementById("lon").innerHTML = position.coords.longitude;
+				}	
 			}
 			
 			function enableOrientation () {
