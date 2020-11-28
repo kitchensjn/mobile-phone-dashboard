@@ -33,7 +33,7 @@
 			}
 			
 			function addToArray () {
-				timeseries.push(
+				timeseries.push([
 					document.getElementById("time").innerHTML,
 					document.getElementById("speed").innerHTML,
 					document.getElementById("lat").innerHTML,
@@ -45,6 +45,7 @@
 					document.getElementById("accelX").innerHTML,
 					document.getElementById("accelY").innerHTML,
 					document.getElementById("accelZ").innerHTML
+				])
 			}
 			
 			function enableLocation () {
