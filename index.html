@@ -28,11 +28,9 @@
 				DeviceOrientationEvent.requestPermission().then(response => {
 					if (response == "granted") {
 						window.addEventListener("deviceorientation", (event) => {
-							setTimeout(function() {	
-								document.getElementById("alpha").innerHTML = Math.round(event.alpha);
-								document.getElementById("beta").innerHTML = Math.round(event.beta);
-								document.getElementById("gamma").innerHTML = Math.round(event.gamma);
-							}, 1000);
+							document.getElementById("alpha").innerHTML = Math.round(event.alpha);
+							document.getElementById("beta").innerHTML = Math.round(event.beta);
+							document.getElementById("gamma").innerHTML = Math.round(event.gamma);
 						})
 					}
 				})
