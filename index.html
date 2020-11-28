@@ -15,6 +15,9 @@
 		<h2 id="alpha">0</h2>
 		<h2 id="beta">0</h2>
 		<h2 id="gamma">0</h2>
+		<h2 id="accelX">0</h2>
+		<h2 id="accelY">0</h2>
+		<h2 id="accelZ">0</h2>
 		
 		<script>
 			function enableSensors () {
@@ -29,8 +32,8 @@
 				}
 
 				function success(position) {
-					document.getElementById("lat").innerHTML = position.coords.latitude;
-					document.getElementById("lon").innerHTML = position.coords.longitude;
+					document.getElementById("lat").innerHTML = "Lat: " + position.coords.latitude;
+					document.getElementById("lon").innerHTML = "Lon: " + position.coords.longitude;
 				}	
 			}
 			
@@ -39,25 +42,25 @@
 				DeviceOrientationEvent.requestPermission().then(response => {
 					if (response == "granted") {
 						window.addEventListener("deviceorientation", (event) => {
-							document.getElementById("alpha").innerHTML = Math.round(event.alpha);
-							document.getElementById("beta").innerHTML = Math.round(event.beta);
-							document.getElementById("gamma").innerHTML = Math.round(event.gamma);
+							document.getElementById("alpha").innerHTML = "Alpha: " + Math.round(event.alpha);
+							document.getElementById("beta").innerHTML = "Beta: " + Math.round(event.beta);
+							document.getElementById("gamma").innerHTML = "Gamma: " + Math.round(event.gamma);
 						})
 					}
 				})
 			}
 			
-			/*
 			function enableMotion () {
 				DeviceMotionEvent.requestPermission().then(response => {
 					if (response == "granted") {
 						window.addEventListener("devicemotion", (event) => {
-							
+							document.getElementById("accelX").innerHTML = "AccelX: " + event.accelerationIncludingGravity.x;
+							document.getElementById("accelY").innerHTML = "AccelY: " + event.accelerationIncludingGravity.y;
+							document.getElementById("accelZ").innerHTML = "AccelZ: " + event.accelerationIncludingGravity.z;
 						})
 					}
 				})
 			}
-			*/
 			
 			/*
 			if(window.DeviceOrientationEvent) {
