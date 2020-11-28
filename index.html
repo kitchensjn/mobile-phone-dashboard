@@ -9,7 +9,8 @@
 	</head>
 	
 	<body>
-		<input type="button" value="Enable Orientation Access" onclick=enableSensors()></input>
+		<input type="button" value="Enable Sensor Access" onclick=enableSensors()>
+		<h2 id="time">0</h2>
 		<h2 id="speed">0</h2>
 		<h2 id="lat">0</h2>
 		<h2 id="lon">0</h2>
@@ -20,8 +21,11 @@
 		<h2 id="accelX">0</h2>
 		<h2 id="accelY">0</h2>
 		<h2 id="accelZ">0</h2>
+		<input type="button" value="Save Recording" onclick=exportToCsv()>
 		
 		<script>
+			var timeseries = [];
+			
 			function enableSensors () {
 				enableLocation();
 				enableOrientation();
@@ -40,6 +44,7 @@
 				}
 
 				function success(position) {
+					document.getElementById("time").innerHTML = "Time: " + position.timestamp;
 					document.getElementById("speed").innerHTML = "Speed: " + position.coords.speed.toFixed(1);
 					document.getElementById("lat").innerHTML = "Lat: " + position.coords.latitude;
 					document.getElementById("lon").innerHTML = "Lon: " + position.coords.longitude;
@@ -76,29 +81,46 @@
 				})
 			}
 			
-			/*
-			if(window.DeviceOrientationEvent) {
-				document.getElementById("connection").innerHTML = "TRUE";
-				window.addEventListener("deviceorientation", handleOrientation, true);
-			} else {
-				document.getElementById("connection").innerHTML = "FALSE";
+			function exportToCsv(filename="test.csv", rows=timeseries) {
+				var processRow = function (row) {
+					var finalVal = '';
+					for (var j = 0; j < row.length; j++) {
+						var innerValue = row[j] === null ? '' : row[j].toString();
+						if (row[j] instanceof Date) {
+							innerValue = row[j].toLocaleString();
+						};
+						var result = innerValue.replace(/"/g, '""');
+						if (result.search(/("|,|\n)/g) >= 0)
+							result = '"' + result + '"';
+						if (j > 0)
+							finalVal += ',';
+						finalVal += result;
+					}
+					return finalVal + '\n';
+				};
+
+				var csvFile = '';
+				for (var i = 0; i < rows.length; i++) {
+					csvFile += processRow(rows[i]);
+				}
+
+				var blob = new Blob([csvFile], { type: 'text/csv;charset=utf-8;' });
+				if (navigator.msSaveBlob) { // IE 10+
+					navigator.msSaveBlob(blob, filename);
+				} else {
+					var link = document.createElement("a");
+					if (link.download !== undefined) { // feature detection
+						// Browsers that support HTML5 download attribute
+						var url = URL.createObjectURL(blob);
+						link.setAttribute("href", url);
+						link.setAttribute("download", filename);
+						link.style.visibility = 'hidden';
+						document.body.appendChild(link);
+						link.click();
+						document.body.removeChild(link);
+					}
+				}
 			}
-			
-			function handleOrientation(event) {
-			  	var absolute = event.absolute;
-			  	var alpha    = event.alpha;
-			  	var beta     = event.beta;
-			  	var gamma    = event.gamma;
-				console.log("Absolute:" + absolute);
-				console.log("Alpha:" + alpha);
-				console.log("Beta:" + beta);
-				console.log("Gamma:" + gamma);
-				document.getElementById("absolute").innerHTML = absolute;
-				document.getElementById("alpha").innerHTML = alpha;
-				document.getElementById("beta").innerHTML = beta;
-				document.getElementById("gamma").innerHTML = gamma;
-			}
-			*/
 		</script>
 	</body>
 
