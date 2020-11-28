@@ -43,9 +43,9 @@
 				DeviceOrientationEvent.requestPermission().then(response => {
 					if (response == "granted") {
 						window.addEventListener("deviceorientation", (event) => {
-							document.getElementById("alpha").innerHTML = "Alpha: " + Math.round(event.alpha);
-							document.getElementById("beta").innerHTML = "Beta: " + Math.round(event.beta);
-							document.getElementById("gamma").innerHTML = "Gamma: " + Math.round(event.gamma);
+							document.getElementById("alpha").innerHTML = "Alpha: " + event.alpha.toFixed(0);
+							document.getElementById("beta").innerHTML = "Beta: " + event.beta.toFixed(0);
+							document.getElementById("gamma").innerHTML = "Gamma: " + event.gamma.toFixed(0);
 						})
 					}
 				})
@@ -55,9 +55,9 @@
 				DeviceMotionEvent.requestPermission().then(response => {
 					if (response == "granted") {
 						window.addEventListener("devicemotion", (event) => {
-							document.getElementById("accelX").innerHTML = "AccelX: " + event.acceleration.x.toFixed(2);
-							document.getElementById("accelY").innerHTML = "AccelY: " + event.acceleration.y.toFixed(2);
-							document.getElementById("accelZ").innerHTML = "AccelZ: " + event.acceleration.z.toFixed(2);
+							document.getElementById("accelX").innerHTML = "AccelX: " + event.acceleration.x.toFixed(1);
+							document.getElementById("accelY").innerHTML = "AccelY: " + event.acceleration.y.toFixed(1);
+							document.getElementById("accelZ").innerHTML = "AccelZ: " + event.acceleration.z.toFixed(1);
 						})
 					}
 				})
