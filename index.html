@@ -35,10 +35,10 @@
 				}
 
 				function success(position) {
-					document.getElementById("speed").innerHTML = "Speed: " + position.coords.speed;
+					document.getElementById("speed").innerHTML = "Speed: " + position.coords.speed.toFixed(1);
 					document.getElementById("lat").innerHTML = "Lat: " + position.coords.latitude;
 					document.getElementById("lon").innerHTML = "Lon: " + position.coords.longitude;
-					document.getElementById("accuracy").innerHTML = "Accuracy: " + position.coords.accuracy;
+					document.getElementById("accuracy").innerHTML = "Accuracy: " + position.coords.accuracy.toFixed(0);
 				}	
 			}
 			
