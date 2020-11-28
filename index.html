@@ -9,9 +9,7 @@
 	</head>
 	
 	<body>
-		<input type="button" value="Enable Orientation Access" onclick=enableOrientation()></button>
-		<h2 id="connection">!!!!!</h2>
-		<h2 id="absolute">0</h2>
+		<input type="button" value="Enable Orientation Access" onclick=enableOrientation()></input>
 		<h2 id="alpha">0</h2>
 		<h2 id="beta">0</h2>
 		<h2 id="gamma">0</h2>
@@ -29,19 +27,10 @@
 			function enableOrientation () {
 				DeviceOrientationEvent.requestPermission().then(response => {
 					if (response == "granted") {
-						window.addEventListener("deviceorientation", (e) => {
-							var absolute = event.absolute;
-							var alpha    = event.alpha;
-							var beta     = event.beta;
-							var gamma    = event.gamma;
-							console.log("Absolute:" + absolute);
-							console.log("Alpha:" + alpha);
-							console.log("Beta:" + beta);
-							console.log("Gamma:" + gamma);
-							document.getElementById("absolute").innerHTML = absolute;
-							document.getElementById("alpha").innerHTML = alpha;
-							document.getElementById("beta").innerHTML = beta;
-							document.getElementById("gamma").innerHTML = gamma;
+						window.addEventListener("deviceorientation", (event) => {
+							document.getElementById("alpha").innerHTML = Math.round(event.alpha);
+							document.getElementById("beta").innerHTML = Math.round(event.beta);
+							document.getElementById("gamma").innerHTML = Math.round(event.gamma);
 						})
 					}
 				})
