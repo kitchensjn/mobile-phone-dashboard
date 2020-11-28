@@ -32,6 +32,20 @@
 				enableMotion();
 			}
 			
+			function addToArray () {
+				timeseries.push(
+					document.getElementById("time").innerHTML,
+					document.getElementById("speed").innerHTML,
+					document.getElementById("lat").innerHTML,
+					document.getElementById("lon").innerHTML,
+					document.getElementById("accuracy").innerHTML,
+					document.getElementById("alpha").innerHTML,
+					document.getElementById("beta").innerHTML,
+					document.getElementById("gamma").innerHTML,
+					document.getElementById("accelX").innerHTML,
+					document.getElementById("accelY").innerHTML,
+					document.getElementById("accelZ").innerHTML
+			}
 			
 			function enableLocation () {
 				if (navigator.geolocation) {
@@ -49,13 +63,13 @@
 					document.getElementById("lat").innerHTML = "Lat: " + position.coords.latitude;
 					document.getElementById("lon").innerHTML = "Lon: " + position.coords.longitude;
 					document.getElementById("accuracy").innerHTML = "Accuracy: " + position.coords.accuracy.toFixed(0);
+					addToArray();
 				}
 				
 				function error(err) {
 					console.log("Geolocation Unavailable!");
 				}
 			}
-			
 			
 			function enableOrientation () {
 				DeviceOrientationEvent.requestPermission().then(response => {
@@ -80,6 +94,7 @@
 					}
 				})
 			}
+			
 			
 			function exportToCsv(filename="test.csv", rows=timeseries) {
 				var processRow = function (row) {
