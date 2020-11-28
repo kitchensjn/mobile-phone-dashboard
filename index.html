@@ -10,19 +10,23 @@
 	
 	<body>
 		<input type="button" value="Enable Orientation Access" onclick=enableOrientation()></input>
+		<h2 id="lat">0</h2>
+		<h2 id="lon">0</h2>
 		<h2 id="alpha">0</h2>
 		<h2 id="beta">0</h2>
 		<h2 id="gamma">0</h2>
 		
 		<script>
-			//if (navigator.geolocation) {
-			//	navigator.geolocation.getCurrentPosition(success);
-			//}
+			if (navigator.geolocation) {
+				navigator.geolocation.watchPosition(success);
+			}
 
-			//function success(position) {
-			//	console.log('Latitude: ' + position.coords.latitude);
-			//	console.log('Longitude: ' + position.coords.longitude);
-			//}
+			function success(position) {
+				document.getElementById("lat").innerHTML = position.coords.latitude;
+				document.getElementById("lon").innerHTML = position.coords.longitude;
+				//console.log('Latitude: ' + position.coords.latitude);
+				//console.log('Longitude: ' + position.coords.longitude);
+			}
 			
 			function enableOrientation () {
 				DeviceOrientationEvent.requestPermission().then(response => {
@@ -35,6 +39,18 @@
 					}
 				})
 			}
+			
+			/*
+			function enableMotion () {
+				DeviceMotionEvent.requestPermission().then(response => {
+					if (response == "granted") {
+						window.addEventListener("devicemotion", (event) => {
+							
+						})
+					}
+				})
+			}
+			*/
 			
 			/*
 			if(window.DeviceOrientationEvent) {
