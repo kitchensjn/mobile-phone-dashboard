@@ -19,10 +19,12 @@
 		<script>
 			
 			function enableLocation () {
-				if (navigator.geolocation) {
-					console.log("Success");
-					navigator.geolocation.getCurrentPosition(success);
-				}
+				navigator.geolocation.getCurrentPosition(success);
+				
+				//if (navigator.geolocation) {
+				//	console.log("Success");
+				//	navigator.geolocation.getCurrentPosition(success);
+				//}
 
 				function success(position) {
 					console.log('Latitude: ' + position.coords.latitude);
