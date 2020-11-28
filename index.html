@@ -24,7 +24,7 @@
 		<input type="button" value="Save Recording" onclick=exportToCsv()>
 		
 		<script>
-			var timeseries = [];
+			var timeseries = [["time", "speed", "lat", "lon", "accuracy", "alpha", "beta", "gamma", "accelX", "accelY", "accelZ"]];
 			
 			function enableSensors () {
 				enableLocation();
@@ -59,11 +59,11 @@
 				}
 
 				function success(position) {
-					document.getElementById("time").innerHTML = "Time: " + position.timestamp;
-					document.getElementById("speed").innerHTML = "Speed: " + position.coords.speed.toFixed(1);
-					document.getElementById("lat").innerHTML = "Lat: " + position.coords.latitude;
-					document.getElementById("lon").innerHTML = "Lon: " + position.coords.longitude;
-					document.getElementById("accuracy").innerHTML = "Accuracy: " + position.coords.accuracy.toFixed(0);
+					document.getElementById("time").innerHTML = position.timestamp;
+					document.getElementById("speed").innerHTML = position.coords.speed.toFixed(1);
+					document.getElementById("lat").innerHTML = position.coords.latitude;
+					document.getElementById("lon").innerHTML = position.coords.longitude;
+					document.getElementById("accuracy").innerHTML = position.coords.accuracy.toFixed(0);
 					addToArray();
 				}
 				
@@ -76,9 +76,9 @@
 				DeviceOrientationEvent.requestPermission().then(response => {
 					if (response == "granted") {
 						window.addEventListener("deviceorientation", (event) => {
-							document.getElementById("alpha").innerHTML = "Alpha: " + event.alpha.toFixed(0);
-							document.getElementById("beta").innerHTML = "Beta: " + event.beta.toFixed(0);
-							document.getElementById("gamma").innerHTML = "Gamma: " + event.gamma.toFixed(0);
+							document.getElementById("alpha").innerHTML = event.alpha.toFixed(0);
+							document.getElementById("beta").innerHTML = event.beta.toFixed(0);
+							document.getElementById("gamma").innerHTML = event.gamma.toFixed(0);
 						})
 					}
 				})
@@ -88,9 +88,9 @@
 				DeviceMotionEvent.requestPermission().then(response => {
 					if (response == "granted") {
 						window.addEventListener("devicemotion", (event) => {
-							document.getElementById("accelX").innerHTML = "AccelX: " + event.acceleration.x.toFixed(1);
-							document.getElementById("accelY").innerHTML = "AccelY: " + event.acceleration.y.toFixed(1);
-							document.getElementById("accelZ").innerHTML = "AccelZ: " + event.acceleration.z.toFixed(1);
+							document.getElementById("accelX").innerHTML = event.acceleration.x.toFixed(1);
+							document.getElementById("accelY").innerHTML = event.acceleration.y.toFixed(1);
+							document.getElementById("accelZ").innerHTML = event.acceleration.z.toFixed(1);
 						})
 					}
 				})
