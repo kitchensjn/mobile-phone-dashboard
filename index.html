@@ -6,21 +6,50 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Mobile Phone Dashboard</title>
+		<style>
+			h2 {
+				display: inline;
+			}
+		</style>
 	</head>
 	
 	<body>
 		<input type="button" value="Enable Sensor Access" onclick=enableSensors()>
-		<h2 id="time">0</h2>
-		<h2 id="speed">0</h2>
-		<h2 id="lat">0</h2>
-		<h2 id="lon">0</h2>
-		<h2 id="accuracy">0</h2>
-		<h2 id="alpha">0</h2>
-		<h2 id="beta">0</h2>
-		<h2 id="gamma">0</h2>
-		<h2 id="accelX">0</h2>
-		<h2 id="accelY">0</h2>
-		<h2 id="accelZ">0</h2>
+		<div>
+			<h2>Time: </h2>
+			<h2 id="time">0</h2>
+		</div>
+		<div>
+			<h2>Speed: </h2>
+			<h2 id="speed">0</h2>
+		</div>
+		<div>
+			<h2 id="lat">0</h2>
+		</div>
+		<div>
+			<h2 id="lon">0</h2>
+		</div>
+		<div>
+			<h2 id="accuracy">0</h2>
+		</div>
+		<div>
+			<h2 id="alpha">0</h2>
+		</div>
+		<div>
+			<h2 id="beta">0</h2>
+		</div>
+		<div>
+			<h2 id="gamma">0</h2>
+		</div>
+		<div>
+			<h2 id="accelX">0</h2>
+		</div>
+		<div>
+			<h2 id="accelY">0</h2>
+		</div>
+		<div>	
+			<h2 id="accelZ">0</h2>
+		</div>
 		<input type="button" value="Save Recording" onclick=exportToCsv()>
 		
 		<script>
