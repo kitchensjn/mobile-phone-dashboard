@@ -27,13 +27,13 @@
 			function enableOrientation () {
 				DeviceOrientationEvent.requestPermission().then(response => {
 					if (response == "granted") {
-						setTimeout(function() {
-							window.addEventListener("deviceorientation", (event) => {
+						window.addEventListener("deviceorientation", (event) => {
+							setTimeout(function() {	
 								document.getElementById("alpha").innerHTML = Math.round(event.alpha);
 								document.getElementById("beta").innerHTML = Math.round(event.beta);
 								document.getElementById("gamma").innerHTML = Math.round(event.gamma);
-							})	
-						}, 1000);
+							}, 1000);
+						})
 					}
 				})
 			}
