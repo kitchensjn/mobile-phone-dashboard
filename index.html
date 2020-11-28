@@ -36,7 +36,7 @@
 						timeout: 5000,
 						maximumAge: 0
 					};
-					navigator.geolocation.watchPosition(success, options);
+					navigator.geolocation.watchPosition(success, error, options);
 				}
 
 				function success(position) {
