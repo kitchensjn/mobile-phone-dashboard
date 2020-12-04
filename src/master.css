@@ -2,6 +2,8 @@ html {
 	width: 100wh;
 	height: 100vh;
 	margin: 0px;
+	top: 0px;
+	left: 0px;
 }
 
 body {
@@ -10,6 +12,8 @@ body {
 	width: 100wh;
 	height: 100vh;
 	margin: 0px;
+	top: 0px;
+	left: 0px;
 }
 
 h2 {
