@@ -7,7 +7,7 @@ h2 {
 	display: inline;
 }
 
-.enable {
+.intro {
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -17,9 +17,13 @@ h2 {
 	background-color: #000000;
 }
 
-.enable .button {
+.intro .container {
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	transform:translate(-50%, -50%);
+}
+
+.intro .container .title {
+	color: #FF8C00;
 }
