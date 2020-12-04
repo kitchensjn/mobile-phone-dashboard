@@ -1,0 +1,15 @@
+{
+	"name": "Wheels: Trip Recorder",
+	"short_name": "Wheels",
+	"start_url": ".",
+	"background_color": "#000000",
+	"theme_color": "#FF8C00",
+	"display": "standalone",
+	"icons": [
+		{
+			"src": "images/wheel.png",
+			"sizes": "360x360",
+			"type": "image/png"
+		}
+	]
+}
