@@ -1,12 +1,4 @@
-html {
-	width: 100%;
-	height: 100%;
-	margin: 0px;
-	top: 0px;
-	left: 0px;
-}
-
-body {
+html, body {
 	background-color: #AAAAAA;
 	color: #FFFFFF;
 	width: 100%;
