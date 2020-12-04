@@ -12,89 +12,104 @@
 	</head>
 	
 	<body>
-		<div class="intro">
+		<div class="intro" id="intro">
 			<div class="container">
 				<h1 class="title">Wheels: Trip Recorder</h1>
 				<input type="button" value="Enter Site" onclick=enableSensors()>
 			</div>
 		</div>
-		<div>
-			<h1></h1>
+		<div class="main">
+			<div class="measurements">
+				<div>
+					<h1>GPS</h1>
+				</div>
+				<div>
+					<h2>Time: </h2>
+					<h2 id="time">0</h2>
+				</div>
+				<div>
+					<h2>Speed: </h2>
+					<h2 id="speed">0</h2>
+				</div>
+				<div>
+					<h2>Lat: </h2>
+					<h2 id="lat">0</h2>
+				</div>
+				<div>
+					<h2>Lon: </h2>
+					<h2 id="lon">0</h2>
+				</div>
+				<div>
+					<h2>Lat/Lon Accuracy: </h2>
+					<h2 id="llaccuracy">0</h2>
+				</div>
+				<div>
+					<h2>Altitude: </h2>
+					<h2 id="alt">0</h2>
+				</div>
+				<div>
+					<h2>Altitude Accuracy: </h2>
+					<h2 id="altaccuracy">0</h2>
+				</div>
+				<div>
+					<h1>Gyroscope</h1>
+				</div>
+				<div>
+					<h2>Alpha: </h2>
+					<h2 id="alpha">0</h2>
+				</div>
+				<div>
+					<h2>Beta: </h2>
+					<h2 id="beta">0</h2>
+				</div>
+				<div>
+					<h2>Gamma: </h2>
+					<h2 id="gamma">0</h2>
+				</div>
+				<div>
+					<h1>Accelerometer</h1>
+				</div>
+				<div>
+					<h2>X: </h2>
+					<h2 id="accelX">0</h2>
+				</div>
+				<div>
+					<h2>Y: </h2>
+					<h2 id="accelY">0</h2>
+				</div>
+				<div>
+					<h2>Z: </h2>
+					<h2 id="accelZ">0</h2>
+				</div>
+			</div>
+			<div class="recordButton">
+				<input id="record" type="button" value="Start Recording" onclick=recording()>
+			</div>
 		</div>
-		<div>
-			<h1>GPS</h1>
-		</div>
-		<div>
-			<h2>Time: </h2>
-			<h2 id="time">0</h2>
-		</div>
-		<div>
-			<h2>Speed: </h2>
-			<h2 id="speed">0</h2>
-		</div>
-		<div>
-			<h2>Lat: </h2>
-			<h2 id="lat">0</h2>
-		</div>
-		<div>
-			<h2>Lon: </h2>
-			<h2 id="lon">0</h2>
-		</div>
-		<div>
-			<h2>Lat/Lon Accuracy: </h2>
-			<h2 id="llaccuracy">0</h2>
-		</div>
-		<div>
-			<h2>Altitude: </h2>
-			<h2 id="alt">0</h2>
-		</div>
-		<div>
-			<h2>Altitude Accuracy: </h2>
-			<h2 id="altaccuracy">0</h2>
-		</div>
-		<div>
-			<h1>Gyroscope</h1>
-		</div>
-		<div>
-			<h2>Alpha: </h2>
-			<h2 id="alpha">0</h2>
-		</div>
-		<div>
-			<h2>Beta: </h2>
-			<h2 id="beta">0</h2>
-		</div>
-		<div>
-			<h2>Gamma: </h2>
-			<h2 id="gamma">0</h2>
-		</div>
-		<div>
-			<h1>Accelerometer</h1>
-		</div>
-		<div>
-			<h2>X: </h2>
-			<h2 id="accelX">0</h2>
-		</div>
-		<div>
-			<h2>Y: </h2>
-			<h2 id="accelY">0</h2>
-		</div>
-		<div>
-			<h2>Z: </h2>
-			<h2 id="accelZ">0</h2>
-		</div>
-		<div>
-			<h1></h1>
-		</div>
-		<input type="button" value="Save Recording" onclick=exportToCsv()>
 		
 		<script>
 			var timeseries = [["time", "speed", "lat", "lon", "llaccuracy", "alt", "altaccuracy", "alpha", "beta", "gamma", "accelX", "accelY", "accelZ"]];
+			
+			var record = 0;
+			
+			function recording() {
+				if (record == 0) {
+					timeseries = [["time", "speed", "lat", "lon", "llaccuracy", "alt", "altaccuracy", "alpha", "beta", "gamma", "accelX", "accelY", "accelZ"]];
+					record = 1;
+					document.getElementById("record").value = "Stop Recording and Save";
+				} else if (record == 1) {
+					record = 0;
+					exportToCsv();
+					document.getElementById("record").value = "Start Recording";
+				}
+				
+			}
 			
 			function enableSensors () {
 				enableLocation();
 				enableOrientation();
 				enableMotion();
-				document.getElementByClassName("intro").style.display = "none";
+				document.getElementById("intro").style.display = "none";
 			}
 			
 			function addToArray () {
@@ -133,7 +148,9 @@
 					document.getElementById("llaccuracy").innerHTML = position.coords.accuracy.toFixed(0);
 					document.getElementById("alt").innerHTML = position.coords.altitude.toFixed(0);
 					document.getElementById("altaccuracy").innerHTML = position.coords.altitudeAccuracy.toFixed(0);
-					addToArray();
+					if (record == 1) {
+						addToArray();	
+					}
 				}
 				
 				function error(err) {
