@@ -5,6 +5,7 @@
 	"background_color": "#FF8C00",
 	"theme_color": "#000000",
 	"display": "standalone",
+	"orientation": "landscape",
 	"icons": [
 		{
 			"src": "images/wheel192.png",
