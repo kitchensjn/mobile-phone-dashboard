@@ -20,7 +20,6 @@
 		</div>
 		<div class="main">
 			<div class="measurements">
-				<input type="button" value="Enter Site" onclick=enableSensors2()>
 				<div>
 					<h1>GPS</h1>
 				</div>
@@ -107,13 +106,6 @@
 			}
 			
 			function enableSensors () {
-				enableLocation();
-				enableOrientation();
-				enableMotion();
-				document.getElementById("intro").style.display = "none";
-			}
-			
-			function enableSensors2 () {
 				enableLocation();
 				enableOrientation();
 				enableMotion();
@@ -232,7 +224,7 @@
 				}
 			}
 		</script>
-		<script src="src/index.js"></script>
+		<!--<script src="src/index.js"></script>-->
 	</body>
 
 </html>
