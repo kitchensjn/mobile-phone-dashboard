@@ -7,8 +7,18 @@
 	"display": "standalone",
 	"icons": [
 		{
-			"src": "images/wheel.png",
-			"sizes": "360x360",
+			"src": "images/wheel192.png",
+			"sizes": "192x192",
+			"type": "image/png"
+		},
+		{
+			"src": "images/wheel512.png",
+			"sizes": "512x512",
+			"type": "image/png"
+		},
+		{
+			"src": "images/wheel1024.png",
+			"sizes": "1024x1024",
 			"type": "image/png"
 		}
 	]
